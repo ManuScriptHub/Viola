@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Varsha!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #ff69b4;
+            --secondary-color: #9370db;
+            --accent-color: #ffb6c1;
+            --text-color: #333;
+            --light-color: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        header {
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .birthday-card {
+            background-color: var(--light-color);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .birthday-message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-top: 1rem;
+        }
+        
+        .magic-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2rem;  /* Increased padding for better touch targets */
+            font-size: 1.2rem;
+            margin: 1rem 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+        }
+        
+        .magic-button:hover, .magic-button:active {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Specific styles for mobile */
+        @media (max-width: 768px) {
+            .magic-button {
+                display: block;
+                width: 80%;
+                max-width: 300px;
+                margin: 1rem auto;
+                padding: 1.2rem;
+                font-size: 1.4rem;
+            }
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-placeholder {
+            background-color: var(--accent-color);
+            height: 150px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000000;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+            opacity: 0.7;
+            z-index: -1;
+        }
+        
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 15px;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+        
+        .balloon::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.2);
+            bottom: -80px;
+            left: 19px;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        footer {
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .birthday-message {
+                font-size: 1rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+        
+        .countdown {
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            color: var(--secondary-color);
+        }
+        
+        .ribbon {
+            position: absolute;
+            right: -30px;
+            top: 20px;
+            width: 150px;
+            height: 30px;
+            background-color: var(--primary-color);
+            transform: rotate(45deg);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-container {
+            position: relative;
+            perspective: 1000px;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-front {
+            background-color: var(--light-color);
+            background: linear-gradient(135deg, var(--light-color) 0%, #f8f9fa 100%);
+        }
+        
+        .card-back {
+            background-color: var(--accent-color);
+            transform: rotateY(180deg);
+            color: var(--light-color);
+        }
+        
+        .card-instruction {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="animate__animated animate__fadeInDown">
+            <h1>Happy Birthday Varsha!</h1>
+            <h2>Wishing you a day filled with joy and happiness</h2>
+        </header>
+        
+        <div class="card-container animate__animated animate__zoomIn">
+            <div class="card" id="birthdayCard">
+                <div class="card-front">
+                    <div class="ribbon">Special Day</div>
+                    <h2>Today is Your Day!</h2>
+                    <p class="birthday-message">
+                        Hey Varsha!<br><br>
+                        Happy Birthday! 🎉 Another trip around the sun, another year of you being awesome!
+                        Hope your day is filled with cake, laughs, and zero responsibilities.
+                        Let's hang out soon...
+                        <br><br>
+                        Miss your face,
+                    </p>
+                    <p class="signature">Viola🎻</p>
+                    <div class="card-instruction">Click card to flip</div>
+                </div>
+                <div class="card-back">
+                    <h2>Birthday Wishes</h2>
+                    <p class="birthday-message">
+                        Remember when we...<br>
+                        ...stayed up all night watched a horrow series?<br>
+                        ...played cards?<br>
+                        ...I still can't believe you beat me♟️ last time...🤨<br>
+                        Here's to making more ridiculous memories this year!
+                    </p>
+                    <p class="countdown" id="birthdayCountdown"></p>
+                    <div class="card-instruction">Click to flip back</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="animate__animated animate__fadeInUp">
+            <button class="magic-button" id="surpriseButton">Magic Surprise</button>
+            <button class="magic-button" id="musicButton">Birthday Music</button>
+            <button class="magic-button" id="memoryButton">Memory Lane</button>
+        </div>
+        
+        <div class="gallery animate__animated animate__fadeIn" style="animation-delay: 1s;" id="quoteGallery">
+            <div class="gallery-placeholder">Your 🎨🖌️🖼️</div>
+            <div class="gallery-placeholder">Your music taste</div>
+            <div class="gallery-placeholder">Your 4️⃣👀</div>
+            <div class="gallery-placeholder">Your amazing spirit👻</div>
+        </div>
+        
+        <footer>
+            Made with ❤️ especially for you, Varsha!
+        </footer>
+    </div>
+    
+    <script>
+        // Create balloons
+        function createBalloons() {
+            const colors = ['#ff69b4', '#9370db', '#ffb6c1', '#87cefa', '#ffa07a'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 12; i++) {
+                const balloon = document.createElement('div');
+                balloon.classList.add('balloon');
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = `${Math.random() * 100}%`;
+                balloon.style.top = `${Math.random() * 100}%`;
+                balloon.style.animationDelay = `${Math.random() * 10}s`;
+                balloon.style.animationDuration = `${15 + Math.random() * 10}s`;
+                container.appendChild(balloon);
+            }
+        }
+        
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff69b4', '#9370db', '#ffb6c1', '#87cefa', '#ffa07a', '#ffd700', '#90ee90'];
+            const shapes = ['square', 'circle'];
+            const container = document.body;
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.backgroundColor = color;
+                if (shape === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                }
+                
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.width = `${5 + Math.random() * 10}px`;
+                confetti.style.height = `${5 + Math.random() * 10}px`;
+                confetti.style.opacity = '0';
+                confetti.style.animation = `confettiFall ${3 + Math.random() * 5}s linear infinite`;
+                confetti.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Initialize countdown
+        function initCountdown() {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            
+            // Get next birthday - assuming we don't know the exact date, 
+            // so we'll just display days since birthday if it's today
+            const countdown = document.getElementById('birthdayCountdown');
+            countdown.textContent = "Today is your special day! 🎉";
+        }
+        
+        // Setup the interactive card
+        function setupCard() {
+            const card = document.getElementById('birthdayCard');
+            card.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+            });
+        }
+        
+        // Setup the magic buttons
+        function setupButtons() {
+            // Surprise button - shows a birthday message
+            const surpriseButton = document.getElementById('surpriseButton');
+            surpriseButton.addEventListener('click', function() {
+                // Create a message popup
+                const popup = document.createElement('div');
+                popup.style.position = 'fixed';
+                popup.style.top = '50%';
+                popup.style.left = '50%';
+                popup.style.transform = 'translate(-50%, -50%)';
+                popup.style.backgroundColor = 'white';
+                popup.style.padding = '20px';
+                popup.style.borderRadius = '10px';
+                popup.style.boxShadow = '0 0 20px rgba(0,0,0,0.2)';
+                popup.style.zIndex = '1000';
+                popup.style.maxWidth = '80%';
+                popup.style.textAlign = 'center';
+                
+                popup.innerHTML = `
+                    <h3 style="color: var(--primary-color); margin-bottom: 10px;">Birthday Surprise!</h3>
+                    <p>Sending you virtual cake, hugs, and good vibes! 🎂 </p>
+                    <p>Hope this year brings you all the tacos, adventures, and laughs you can handle.</p>
+                    <button style="background: var(--secondary-color); color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-top: 15px; cursor: pointer;">Close</button>
+                `;
+                
+                document.body.appendChild(popup);
+                
+                // Add animation
+                popup.classList.add('animate__animated', 'animate__zoomIn');
+                
+                // Close button
+                const closeButton = popup.querySelector('button');
+                closeButton.addEventListener('click', function() {
+                    popup.classList.remove('animate__zoomIn');
+                    popup.classList.add('animate__zoomOut');
+                    setTimeout(() => {
+                        document.body.removeChild(popup);
+                    }, 500);
+                });
+                
+                // Mobile-friendly - close on touch outside
+                document.addEventListener('touchstart', function closePopup(e) {
+                    if (!popup.contains(e.target) && e.target !== surpriseButton) {
+                        popup.classList.remove('animate__zoomIn');
+                        popup.classList.add('animate__zoomOut');
+                        setTimeout(() => {
+                            if (document.body.contains(popup)) {
+                                document.body.removeChild(popup);
+                            }
+                        }, 500);
+                        document.removeEventListener('touchstart', closePopup);
+                    }
+                });
+            });
+            
+            // Music button - plays birthday music
+            const musicButton = document.getElementById('musicButton');
+            let isPlaying = false;
+            let birthdayAudio;
+            
+            musicButton.addEventListener('click', function() {
+                if (!isPlaying) {
+                    // Create virtual birthday song (just a simple tone pattern)
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    
+                    const playNote = (frequency, startTime, duration) => {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.type = 'sine';
+                        oscillator.frequency.value = frequency;
+                        gainNode.gain.value = 0.3;
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.start(startTime);
+                        oscillator.stop(startTime + duration);
+                    };
+                    
+                    // Happy Birthday melody
+                    const notes = [
+                        { note: 'G4', freq: 392.00, time: 0, duration: 0.25 },
+                        { note: 'G4', freq: 392.00, time: 0.25, duration: 0.25 },
+                        { note: 'A4', freq: 440.00, time: 0.5, duration: 0.5 },
+                        { note: 'G4', freq: 392.00, time: 1.0, duration: 0.5 },
+                        { note: 'C5', freq: 523.25, time: 1.5, duration: 0.5 },
+                        { note: 'B4', freq: 493.88, time: 2.0, duration: 1.0 },
+                        
+                        { note: 'G4', freq: 392.00, time: 3.0, duration: 0.25 },
+                        { note: 'G4', freq: 392.00, time: 3.25, duration: 0.25 },
+                        { note: 'A4', freq: 440.00, time: 3.5, duration: 0.5 },
+                        { note: 'G4', freq: 392.00, time: 4.0, duration: 0.5 },
+                        { note: 'D5', freq: 587.33, time: 4.5, duration: 0.5 },
+                        { note: 'C5', freq: 523.25, time: 5.0, duration: 1.0 },
+                        
+                        { note: 'G4', freq: 392.00, time: 6.0, duration: 0.25 },
+                        { note: 'G4', freq: 392.00, time: 6.25, duration: 0.25 },
+                        { note: 'G5', freq: 783.99, time: 6.5, duration: 0.5 },
+                        { note: 'E5', freq: 659.25, time: 7.0, duration: 0.5 },
+                        { note: 'C5', freq: 523.25, time: 7.5, duration: 0.5 },
+                        { note: 'B4', freq: 493.88, time: 8.0, duration: 0.5 },
+                        { note: 'A4', freq: 440.00, time: 8.5, duration: 0.5 },
+                        
+                        { note: 'F5', freq: 698.46, time: 9.0, duration: 0.25 },
+                        { note: 'F5', freq: 698.46, time: 9.25, duration: 0.25 },
+                        { note: 'E5', freq: 659.25, time: 9.5, duration: 0.5 },
+                        { note: 'C5', freq: 523.25, time: 10.0, duration: 0.5 },
+                        { note: 'D5', freq: 587.33, time: 10.5, duration: 0.5 },
+                        { note: 'C5', freq: 523.25, time: 11.0, duration: 1.0 }
+                    ];
+                    
+                    notes.forEach(note => {
+                        playNote(note.freq, audioContext.currentTime + note.time, note.duration);
+                    });
+                    
+                    this.textContent = 'Stop Music';
+                    isPlaying = true;
+                    
+                    // Make elements bounce with the music
+                    const elements = document.querySelectorAll('h1, h2, .magic-button');
+                    elements.forEach(el => {
+                        el.classList.add('animate__animated', 'animate__pulse');
+                        el.style.animationIterationCount = 'infinite';
+                        el.style.animationDuration = '0.5s';
+                    });
+                    
+                    // Stop after song finishes
+                    setTimeout(() => {
+                        if (isPlaying) {
+                            this.textContent = 'Birthday Music';
+                            isPlaying = false;
+                            
+                            elements.forEach(el => {
+                                el.classList.remove('animate__animated', 'animate__pulse');
+                                el.style.animationIterationCount = '';
+                                el.style.animationDuration = '';
+                            });
+                        }
+                    }, 12000); // Slightly longer than the song
+                } else {
+                    this.textContent = 'Birthday Music';
+                    isPlaying = false;
+                    
+                    const elements = document.querySelectorAll('h1, h2, .magic-button');
+                    elements.forEach(el => {
+                        el.classList.remove('animate__animated', 'animate__pulse');
+                        el.style.animationIterationCount = '';
+                        el.style.animationDuration = '';
+                    });
+                    
+                    if (birthdayAudio) {
+                        birthdayAudio.pause();
+                        birthdayAudio.currentTime = 0;
+                    }
+                }
+            });
+            
+            // Memory Lane button - shows quotes/compliments with animations
+            const memoryButton = document.getElementById('memoryButton');
+            memoryButton.addEventListener('click', function() {
+                const gallery = document.getElementById('quoteGallery');
+                gallery.innerHTML = ''; // Clear existing placeholders
+                
+                const compliments = [
+                    'Your playlist choices are always 🍃',
+                    'No one sleeps like you do',
+                    'Your glasses make you look so smart',
+                    "And, I'm ready to beat you at ♟️"
+                ];
+                
+                compliments.forEach((compliment, index) => {
+                    const placeholder = document.createElement('div');
+                    placeholder.classList.add('gallery-placeholder', 'animate__animated', 'animate__flipInY');
+                    placeholder.style.animationDelay = `${index * 0.2}s`;
+                    placeholder.textContent = compliment;
+                    
+                    // Random pastel background
+                    const hue = Math.floor(Math.random() * 360);
+                    placeholder.style.backgroundColor = `hsl(${hue}, 100%, 85%)`;
+                    
+                    gallery.appendChild(placeholder);
+                });
+            });
+        }
+        
+        // Initialize everything when the page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            createBalloons();
+            createConfetti();
+            initCountdown();
+            setupCard();
+            setupButtons();
+            
+            // Hide confetti initially (will show when surprise button is clicked)
+            const confettis = document.querySelectorAll('.confetti');
+            confettis.forEach(confetti => {
+                confetti.style.opacity = '0';
+            });
+        });
+    </script>
+</body>
+</html>
